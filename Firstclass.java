@@ -1,29 +1,22 @@
 import java.util.*;
-
+import java.lang.Math;
 class Firstclass{
     public static void main(String args[]) {
-        // simple calculator
-        int a=30;
-        int b=20;
-        int sum=a+b;
-        System.out.println("hello shiv sum of the numbers "+sum);
-        System.out.println(" code is succesfully running");
-        // armstrong program
-        int rem,sm=0,number=375,original;
+        int rem,sm=0,original;
+        System.out.print("Enter Number to check Armstrong : ");
+        Scanner sc =new Scanner(System.in);
+        int number=sc.nextInt();
         original=number;
-        // String len=String.format("%d",original);
-        // int length=len.length();
-        // System.out.println("string format "+len);
-        // System.out.println("length of a string "+length);
-
+        int n=number;
+        String l=Integer.toString(n);
+        int length=l.length();
         while (number!=0)
         {
             rem=number%10;
-            // System.out.println(rem);
-            sm=sm+rem*rem*rem;
+            double resul=Math.pow(rem,length);
+            sm= (int) (sm+resul);
             number=number/10;
         }
-
         if (original==sm)
         {
             System.out.println("armstrong : "+original);
@@ -32,14 +25,6 @@ class Firstclass{
         {
             System.out.println("Not armstrong : "+original);
         }
-
-        // int c=3;
-        // // int pow=(c**3);
-        // System.out.println(Math.pow(c,50));
-        Scanner ss =new Scanner(System.in);
-        String name=ss.nextLine();
-        System.out.println(name);
-
     }
 }
 

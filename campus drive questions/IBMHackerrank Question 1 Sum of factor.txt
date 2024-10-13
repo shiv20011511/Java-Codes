@@ -1,0 +1,84 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+
+class Result {
+
+    /*
+     * Complete the 'maxSubsetSum' function below.
+     *
+     * The function is expected to return a LONG_INTEGER_ARRAY.
+     * The function accepts INTEGER_ARRAY k as parameter.
+     */
+
+    public static List<Long> maxSubsetSum(List<Integer> k) {
+    // Write your code here
+        List<Long> arr = new ArrayList<>();
+        for(int i=0;i<k.size();i++){
+            int val=k.get(i);
+            // int x=
+            arr.add(GetSum(val));
+        }
+        
+        return arr;
+    }
+    
+    public static long GetSum(int val){
+        long sum=0;
+        for(int i=1;i*i<=val;i++){
+           if (val % i == 0) {
+                sum += i;
+                // If `i` is not the square root of `val`, add the corresponding factor
+                if (i != val / i) {
+                    sum += val / i;
+                }
+            }
+        }
+        
+        return sum;
+        
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int kCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> k = IntStream.range(0, kCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine().replaceAll("\\s+$", "");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .map(String::trim)
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        List<Long> result = Result.maxSubsetSum(k);
+
+        bufferedWriter.write(
+            result.stream()
+                .map(Object::toString)
+                .collect(joining("\n"))
+            + "\n"
+        );
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}

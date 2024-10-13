@@ -5,6 +5,7 @@ public class bintodec {
 //    program to convery binary to dec
     public static void main(String args[]){
             Scanner scan = new Scanner(System.in);
+            System.out.print("Enter your binary Number : ");
             int bin = scan.nextInt();
             int sum = 0, i = 0;
             int rem;
